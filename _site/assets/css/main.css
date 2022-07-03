@@ -1,0 +1,137 @@
+/* pt-sans-regular - latin */
+@font-face {
+	font-family: 'PT Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/assets/fonts/PTSans/pt-sans-v17-latin-regular.eot'); /* IE9 Compat Modes */
+	src: local(''),
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-regular.svg#PTSans') format('svg'); /* Legacy iOS */
+  }
+  
+  /* pt-sans-italic - latin */
+  @font-face {
+	font-family: 'PT Sans';
+	font-style: italic;
+	font-weight: 400;
+	src: url('/assets/fonts/PTSans/pt-sans-v17-latin-italic.eot'); /* IE9 Compat Modes */
+	src: local(''),
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-italic.woff2') format('woff2'), /* Super Modern Browsers */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-italic.woff') format('woff'), /* Modern Browsers */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-italic.ttf') format('truetype'), /* Safari, Android, iOS */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-italic.svg#PTSans') format('svg'); /* Legacy iOS */
+  }
+  
+  /* pt-sans-700 - latin */
+  @font-face {
+	font-family: 'PT Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: url('/assets/fonts/PTSans/pt-sans-v17-latin-700.eot'); /* IE9 Compat Modes */
+	src: local(''),
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-700.woff') format('woff'), /* Modern Browsers */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+		 url('/assets/fonts/PTSans/pt-sans-v17-latin-700.svg#PTSans') format('svg'); /* Legacy iOS */
+  }
+
+:root {
+	/** THEME 1 (bi lighting) **/
+	/* --dark-bg: #14142aff;
+	--dark-text: #693668ff;
+	--dark-link: #a74482ff;
+	--dark-accent: #f84aa7ff;
+	--dark-text: #ff3562ff; */
+
+	/** THEME 2 (deep blue) **/
+	/** link: https://coolors.co/011627-af0872-7272ab-7899d4-7c9885 **/
+	--dark-bg: #011627;
+	--dark-text: #ccc;
+	--dark-accent: #af0872;
+	--dark-link: #7899d4;
+}
+
+html {
+	font-size: 1.25em;
+}
+
+body {
+	background: var(--dark-bg);
+	font-family: "PT Sans";
+	color: var(--dark-text);
+}
+
+main {
+	width: 100%;
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 1rem 3rem;
+}
+
+main ul {
+	list-style: none;
+	padding: 0;
+}
+
+main li {
+	margin-bottom: 1rem;
+}
+
+main li:before {
+	content: "✨";
+	display: inline-block;
+}
+
+main span.links {
+	font-size: 0.75rem;
+}
+
+a {
+	text-decoration: none;
+	color: var(--dark-link);
+	border-bottom: dotted 1px;
+}
+
+a:visited {
+	color: var(--dark-link);
+}
+
+a:hover {
+	border-bottom: solid 1px;
+}
+
+main strong {
+	color: var(--dark-accent);
+	border-bottom: none;
+	font-weight: bold;
+}
+
+.link-title {
+	font-weight: bold;
+}
+
+a > svg {
+	max-height: 10px;
+}
+
+p.desc {
+	margin: 0.2rem 0;
+	font-size: 0.8rem;
+}
+
+hr {
+	width: 75%;
+	margin: 2rem auto;
+	height: 3px;
+	background-color: var(--dark-accent);
+	border: 0 none;
+}
+
+small {
+	font-size: 0.75rem;
+}
