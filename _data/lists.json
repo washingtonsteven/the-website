@@ -12,10 +12,10 @@
 			},
 			{ 
 				"name": "for the mania",
-				"desc": "sonic mania title screen generator (on Glitch)",
+				"desc": "sonic mania title screen generator (cw: demo has <strong>flashing colors</strong> animating full-screen)",
 				"links": [
-					{ "title": "source", "link": "https://glitch.com/edit/#!/for-the-mania" },
-					{ "title": "demo", "link": "https://for-the-mania.glitch.me/" }
+					{ "title": "source (glitch.com)", "link": "https://glitch.com/edit/#!/for-the-mania" },
+					{ "title": "demo", "link": "/things/for-the-mania" }
 				]
 			},
 			{ 
