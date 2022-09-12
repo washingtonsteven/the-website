@@ -10,4 +10,16 @@ i'm <strong>steve</strong>. i write everything in lowercase.
 
 <hr />
 
+{{#if collections.posts}}
+<h2>posts</h2>
+
+<ul>
+{{#each collections.posts}}
+<li><a href="{{this.url}}">{{data.title}}</a></li>
+{{/each}}
+</ul>
+
+<hr />
+{{/if}}
+
 <small>made with <a href="https://www.11ty.dev/">11ty</a>. <a href="https://github.com/washingtonsteven/the-website">site source</a>. copyright? eh.</small>

@@ -1,0 +1,16 @@
+---
+layout: base
+---
+{{#*inline "nav"}}
+<a href="/">← Home</a>
+{{~/inline}}
+
+<header>
+	{{> nav}}
+</header>
+<main>
+	{{{ content }}}
+</main>
+<footer>
+	{{> nav}}
+</footer>

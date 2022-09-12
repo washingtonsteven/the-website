@@ -2,6 +2,14 @@
 	{
 		"title": "stuff i made",
 		"items": [
+			{
+				"name": "explorer format",
+				"desc": "custom story format for a future version of starchaser",
+				"links": [
+					{ "title": "format file (3.14MB)", "link":"/things/explorer-format/format.js", "external": true },
+					{ "title": "source", "link":"https://github.com/washingtonsteven/explorer-format" }
+				]
+			},
 			{ 
 				"name": "genmo (v2)", 
 				"desc": "js framework for programatically navigating a Twine story",
@@ -60,14 +68,6 @@
 			{
 				"title": "writing/games",
 				"items": [
-					{
-						"name": "explorer format",
-						"desc": "custom story format for a future version of starchaser",
-						"links": [
-							{ "title": "format file (3.14MB)", "link":"/things/explorer-format/format.js" },
-							{ "title": "source", "link":"https://github.com/washingtonsteven/explorer-format" }
-						]
-					},
 					{ 
 						"name": "starchaser",
 						"desc": "unfinished twine game",
