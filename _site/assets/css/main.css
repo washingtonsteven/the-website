@@ -56,6 +56,11 @@
 	--dark-link: #7899d4;
 }
 
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
 html {
 	font-size: 1.25em;
 }
@@ -67,7 +72,6 @@ body {
 }
 
 main {
-	width: 100%;
 	max-width: 1024px;
 	margin: 0 auto;
 	padding: 1rem 3rem;
@@ -82,7 +86,7 @@ main li {
 	margin-bottom: 1rem;
 }
 
-main li:before {
+main ul li:before {
 	content: "✨";
 	display: inline-block;
 }
@@ -134,4 +138,33 @@ hr {
 
 small {
 	font-size: 0.75rem;
+}
+
+main.blog {
+	width: auto;
+}
+
+.blog-content {
+	display: grid;
+	grid-template-columns: 70% auto;
+}
+
+nav.toc {
+	position:sticky;
+	top: 1em;
+	font-size: 0.75rem;
+}
+
+nav.toc ol {
+	list-style: none;
+}
+
+nav.toc ol ol {
+	margin-top: 1em;
+	padding-left: 2em;
+}
+
+nav.toc ol li:before {
+	content: "✨";
+	display: inline-block;
 }

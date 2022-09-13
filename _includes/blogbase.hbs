@@ -2,15 +2,31 @@
 layout: base
 ---
 {{#*inline "nav"}}
-<a href="/">← Home</a>
+<a href="/">← home</a>
 {{~/inline}}
 
-<header>
+{{#if includehighlight}}
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/a11y-dark.min.css">
+{{/if}}
+<div class="header">
 	{{> nav}}
-</header>
-<main>
-	{{{ content }}}
-</main>
-<footer>
+</div>
+<div class="blog-content">
+	<article>
+		<small class="date">{{prettydate page.date}}</small>
+		<h1>{{title}}</h1>
+		{{#if subtitle}}<h2>{{subtitle}}</h2>{{/if}}
+		{{{ content }}}
+	</article>
+	<aside>
+	{{{ toc content }}}
+	</aside>
+</div>
+<div class="footer">
 	{{> nav}}
-</footer>
+	{{#if includehighlight}}
+	<script src="/assets/js/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	{{/if}}
+</div>

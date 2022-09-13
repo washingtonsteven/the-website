@@ -10,14 +10,225 @@
 	<body>
 		<main>
 			
-<header>
-	<a href="/">← Home</a></header>
-<main>
-	<h1>This is a blog entry</h1>
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/a11y-dark.min.css">
+<div class="header">
+	<a href="/">← home</a></div>
+<div class="blog-content">
+	<article>
+		<small class="date">9/12/2022</small>
+		<h1>creating a twine story format</h1>
+		<h2>you probably don&#x27;t need to do this</h2>
+		<h3 id="what%3F" tabindex="-1">what?</h3>
+<p>First. <a href="https://twinery.org">Twine.</a> Twine is a piece of software that let's you write nonlinear stories. It keeps track of chunks of story (so-called &quot;passages&quot;) and the links between them (well, not really, but we'll get there maybe). Basically it keeps track of a graph of nodes.</p>
+<p>Second. <a href="https://twinery.org/cookbook/starting/twine2/storyformat.html">Story Formats.</a> Story Formats are blobs of javascript that take the graph data that Twine has and displays it on a web page.</p>
+<p>A Twine Story Format mainly provides three things</p>
+<ol>
+<li>The HTML markup for the page</li>
+<li>Where Twine (or tweego or whatever compiler you are using) should dump the story data</li>
+<li>Actually there isn't a third thing, gotcha.</li>
+</ol>
+<p>There are several popular ones out there: Harlowe is the default for the Twine application, Sugarcube and Chapbook provide alternate UI experiences, and there's <a href="https://videlais.github.io/snowman/#/">Snowman</a>. Snowman is a bare-bones &quot;bring everything except the kitchen sink&quot; kind of story format. In retrospect, it's open enough that you probably don't need to write a story format of your own if you are planning on publishing your story to the web. But then you don't learn the joys of making a story format! Anyway.</p>
+<h3 id="why%3F" tabindex="-1">why?</h3>
+<p>Three reasons:</p>
+<ol>
+<li>Cause I thought it'd be fun.</li>
+<li>I wanted some first-class features in the format (like using a <code>&lt;canvas&gt;</code> element to draw a map for the game)</li>
+<li>I really didn't want to use jQuery, and a lot (maybe all? Need to check) of the existing formats rely on jQuery. Or at the very least they load it for writers to use. Which is fine! I'd just rather leave it behind. Let the past die. Kill it if you have to.</li>
+</ol>
+<p>Reason #2 is why I called the format &quot;Explorer.&quot; Kind of giving a sense that you can write a &quot;dungeon&quot; that you can explore. Or crawl through. Maybe I should call it &quot;Crawler.&quot; It's not too late.</p>
+<h3 id="how%3F" tabindex="-1">how?</h3>
+<p><a href="https://github.com/washingtonsteven/explorer-format/commits/main">Check out my commits if you just want to go through that way</a></p>
+<p>The ultimate goal is to create a file (<code>format.js</code>) that looks something like:</p>
+<pre><code class="language-js">window.storyFormat({
+	name: &quot;Story Format Name&quot;,
+	version: &quot;1.0.0&quot;,
+	author: &quot;Author McAuthorson&quot;,
+	image: &quot;loss.jpg&quot;,
+	url: &quot;https://hell.site&quot;,
+	license: &quot;MIT&quot;,
+	proofing: false,
+	source: &quot;&quot;
+})
+</code></pre>
+<p>This file is a thing called <a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a>, which I don't know a lot about, but basically you're able to take this JS and execute it in your own runtime, in this case, Twine has a <code>window.storyFormat</code> function that I just fed my format data into.</p>
+<p>Most of those fields are fairly boilerplate, except for <code>source</code> (and <code>proofing</code> which we won't talk about right now). <code>source</code> is where we will dump our HTML.</p>
+<p>In fact, a very simple story format, that does absolutely nothing would look like this:</p>
+<pre><code class="language-js">window.storyFormat({
+	name: &quot;Story Format Name&quot;,
+	version: &quot;1.0.0&quot;,
+	author: &quot;Author McAuthorson&quot;,
+	image: &quot;loss.jpg&quot;,
+	url: &quot;https://hell.site&quot;,
+	license: &quot;MIT&quot;,
+	proofing: false,
+	source: &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;{{STORY_NAME}}&lt;/title&gt;&lt;/head&gt;&quot;+
+	        &quot;&lt;body&gt;{{STORY_DATA}}&lt;/body&gt;&lt;/html&gt;&quot;
+})
+</code></pre>
+<p>Publish a story with this format and you'll see...nothing. Unless you look at the source for your page. Twine replaced <code>{{STORY_NAME}}</code> with the name of your story, and <code>{{STORY_DATA}}</code> with what is basically an XML representation of your story.</p>
+<h4 id="inserting-your-javascript" tabindex="-1">inserting your javascript</h4>
+<p>Now that you have HTML and <code>STORY_DATA</code>, your story format will need some JS to convert that <code>STORY_DATA</code> to something the user can see. That JS can get included directly in the <code>source</code> property:</p>
+<pre><code class="language-js">window.storyFormat({
+	name: &quot;Story Format Name&quot;,
+	version: &quot;1.0.0&quot;,
+	author: &quot;Author McAuthorson&quot;,
+	image: &quot;loss.jpg&quot;,
+	url: &quot;https://hell.site&quot;,
+	license: &quot;MIT&quot;,
+	proofing: false,
+	source: &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;{{STORY_NAME}}&lt;/title&gt;&lt;/head&gt;&quot;+
+	        &quot;&lt;body&gt;{{STORY_DATA}}&quot;+
+	        &quot;&lt;script type=\&quot;text/javascript\&quot;&gt;&quot;+
+	        &quot;//STORY FORMAT JAVASCRIPT HERE&quot;+
+	        &quot;&lt;/script&gt;&quot;+
+	        &quot;&lt;/body&gt;&lt;/html&gt;&quot;
+})
+</code></pre>
+<p>You may be starting to see a problem, writing HTML and Javascript within a string is a pain. So we turn to automated builds!</p>
+<h4 id="building-the-format-json" tabindex="-1">building the format json</h4>
+<p>I ended up writing a script that takes the story format javascript I wrote (in <code>index.js</code>), a handlebars template for the page body, and mashes them together to make the format you see above:</p>
+<p><code>index.hbs</code> (note the <code>\</code> before STORY_NAME and STORY_DATA, this is to prevent handlebars from trying to interpolate values for them, that's Twine's job!)</p>
+<pre><code class="language-handlebars">&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;\{{STORY_NAME}}&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		\{{STORY_DATA}}
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			{{{format_js}}}
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>build-format.js</code></p>
+<pre><code class="language-js">#!/usr/bin/env node
+import Handlebars from &quot;handlebars&quot;;
 
-</main>
-<footer>
-	<a href="/">← Home</a></footer>
+const storyJSON = {
+	name: &quot;Story Format Name&quot;,
+	version: &quot;1.0.0&quot;,
+	author: &quot;Author McAuthorson&quot;,
+	// ...etc.
+}
+
+const format_js = fs.readFileSync(&quot;index.js&quot;);
+const html_template = fs.readFileSync(&quot;index.hbs&quot;);
+storyJSON.source = Handlebars.compile(html_template)({
+	format_js
+});
+
+fs.writeFileSync(&quot;format.js&quot;, `window.storyFormat(${JSON.stringify(storyJSON)})`)
+</code></pre>
+<p>Boom! We have a gnarly looking <code>format.js</code>, but we are no longer directly editing that file, so that's fine!</p>
+<h4 id="side-note%3A-building-js" tabindex="-1">side note: building js</h4>
+<p>In reality, I'm also not directly editing <code>index.js</code> to add my Story Format javascript. Instead I'm using <a href="https://parceljs.org/">Parcel</a> to build <code>index.ts</code> (whoo Typescript!) and minify it to <code>index.js</code>, which then follows the process above. This is really nice for working with TS and ES6 modules, though using sourcemaps is wonky (since the JS is added to the page via the source string rather than directly). You can use any build system you want here (or none!).</p>
+<h4 id="getting-your-story-data%3A-tw-storydata" tabindex="-1">getting your story data: tw-storydata</h4>
+<p>The <code>&lt;tw-storydata&gt;</code> node has all the information you need to load the data about your story:</p>
+<pre><code class="language-html">&lt;tw-storydata
+	name=&quot;Story Name&quot;
+	startnode=&quot;1&quot;
+	format=&quot;Story Format Name&quot;
+	format-version=&quot;1.0.0&quot;
+&gt;
+&lt;!-- passage data here, we'll get there --&gt;
+&lt;/tw-storydata&gt;
+</code></pre>
+<p>You can get this information with a simple <code>const storydataNode = document.querySelector(&quot;tw-storydata&quot;);</code> (placed in your <code>index.js</code> file that we added to the format above), and then get the global story data with something like <code>storydataNode.getAttribute(&quot;name&quot;); //returns &quot;Story Name&quot;</code>. Rinse and repeat to get all of the data about the story</p>
+<h4 id="getting-your-passage-data%3A-tw-passagedata" tabindex="-1">getting your passage data: tw-passagedata</h4>
+<p>All of your passages will show up as individual <code>&lt;tw-passagedata&gt;</code> nodes (which you can get with <code>document.querySelectorAll(&quot;tw-passagedata&quot;)</code>):</p>
+<pre><code class="language-html">&lt;tw-passagedata
+	pid=&quot;1&quot;
+	name=&quot;Passage Name&quot;
+&gt;
+This is the Passage Content!
+&lt;/tw-passagedata&gt;
+</code></pre>
+<p>Similarly to the story data, you can get the attributes with <code>passageNode.getAttribute(&quot;pid&quot;)</code>. And you'll get the passage content with <code>passageNode.innerHTML</code></p>
+<p>You'll probably save this data in an array to access later.</p>
+<h4 id="side-note%3A-what-about-links%3F" tabindex="-1">side note: what about links?</h4>
+<p>Remember when I said Twine only *sorta* keeps track of links between passages? If you look at the data that's output, there is no information on links between passages! While Twine understand wiki-style links in the program itself, it's up to you, dear story format developer, to create those links yourself.</p>
+<p>The main way to do this is to search through your content for something that looks like a <code>[[link]]</code>, and parse that, usually with regular expressions (I'm so, so sorry).</p>
+<p>You can see how I did it <a href="https://github.com/washingtonsteven/explorer-format/blob/e71745be79ece886c05cc2687312c9ab5fe96cc1/src/util.ts#L5-L20">here</a>.</p>
+<h4 id="side-note%3A-user-scripts-and-user-styles" tabindex="-1">side note: user scripts and user styles</h4>
+<p>Within <code>tw-storydata</code> and along side you <code>tw-passagedata</code> nodes, there will be a <code>script</code> and a <code>style</code> node. These will content the user's JS and user's CSS that they input via Twine (or in a specially tagged passage, depending on your compiler). You can take the contents of these nodes, and place them in the page in new <code>&lt;style&gt;</code> and <code>&lt;script&gt;</code> tags.</p>
+<p>Here's an example with a user script</p>
+<pre><code class="language-js">const scriptElem = document.createElement(&quot;script&quot;);
+scriptElem.setAttribute(&quot;type&quot;, &quot;text/javascript&quot;);
+scriptElem.innerHTML = storyDataNode.querySelector(&quot;script#twine-user-script&quot;).innerHTML;
+document.body.appendChild(scriptElem);
+</code></pre>
+<h4 id="showing-the-first-passage" tabindex="-1">showing the first passage</h4>
+<p>This is fairly easy. But first we'll have to add a place to put the passage content in our HTML template:</p>
+<pre><code class="language-handlebars">&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;\{{STORY_NAME}}&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		\{{STORY_DATA}}
+		&lt;div id=&quot;passage-container&quot;&gt;&lt;/div&gt;
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			{{{format_js}}}
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>We can now take a passage (any passage), and put its content into <code>#passage-container</code>.</p>
+<pre><code class="language-js">const passageContainer = document.querySelector(&quot;#passage-container&quot;);
+</code></pre>
+<p>For starters, let's get the first passage. We'll be looking at <code>startnode</code> in the story data to find which passage is first. <code>startnode</code> has the <code>pid</code> of the passage we want. Now we can look through our array of passages to get the one we want:</p>
+<pre><code class="language-js">/** 
+ * Assuming passages are in a variable called &quot;passages&quot;.
+ * &quot;passages&quot; is an array of objects, with keys matching 
+ * all the attributes on a tw-passagedata node.
+ * And also &quot;content&quot; which has the body of the passage, 
+ * with all [[links]] replaced to be 
+ * &lt;a data-passage-name=&quot;&quot;&gt;&lt;/a&gt; tags
+ * 
+ * Not shown: the JS to do all that (for now)
+*/
+
+const startnode = storydataNode.getAttribute(&quot;startnode&quot;);
+const firstPassage = passages.find((passage) =&gt; {
+	return passage.pid === startnode;
+})
+</code></pre>
+<p>Then we put the content in the passage container</p>
+<pre><code class="language-js">passageContainer.innerHTML = firstPassage.content;
+</code></pre>
+<p>Easy as.</p>
+<h4 id="clicky-clicky-links" tabindex="-1">clicky clicky links</h4>
+<p>Now that we have a passage, the user can click a link to go to the next one. But clicking the link doesn't do anything.</p>
+<p>What will have to happen is that when a link is clicked, we listen for that click event, find out what link was clicked (by looking at <code>data-passage-name</code>) and find that passage. Once we have the passage, we display it just like before.</p>
+<p>One thing that makes this easier is <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture">event bubbling</a>. We can listen for a click on the <code>passageContainer</code>, check that we clicked a link, and go from there.</p>
+<pre><code class="language-js">passageContainer.addEventListener(&quot;click&quot;, (e) =&gt; {
+	// check to make sure we clicked on an &lt;a&gt; tag with &quot;data-passage-name&quot; set
+	if (event.target.tagName.toLowerCase() === &quot;a&quot; &amp;&amp; event.target.dataset.passageName) {
+		const passagename = event.target.dataset.passageName;
+		const passage = passages.find((passage) =&gt; {
+			return passage.name === passagename;
+		});
+		if (passage) {
+			passageContainer.innerHTML = passage.content;
+		}
+	}
+})
+</code></pre>
+<p>And that's links!</p>
+<h3 id="done!" tabindex="-1">done!</h3>
+<p>At this point we have a pretty workable story format (I think, I wrote this whole thing as a sort of fever dream). It looks ugly now, but we can make it better with some CSS and some fancy interactivity Javascript. Maybe I'll write about that later.</p>
+
+	</article>
+	<aside>
+	<nav class="toc" >
+        <ol><li><a href="#what%3F">what?</a></li><li><a href="#why%3F">why?</a></li><li><a href="#how%3F">how?</a><ol><li><a href="#inserting-your-javascript">inserting your javascript</a></li><li><a href="#building-the-format-json">building the format json</a></li><li><a href="#side-note%3A-building-js">side note: building js</a></li><li><a href="#getting-your-story-data%3A-tw-storydata">getting your story data: tw-storydata</a></li><li><a href="#getting-your-passage-data%3A-tw-passagedata">getting your passage data: tw-passagedata</a></li><li><a href="#side-note%3A-what-about-links%3F">side note: what about links?</a></li><li><a href="#side-note%3A-user-scripts-and-user-styles">side note: user scripts and user styles</a></li><li><a href="#showing-the-first-passage">showing the first passage</a></li><li><a href="#clicky-clicky-links">clicky clicky links</a></li></ol></li><li><a href="#done!">done!</a></li></ol>
+      </nav>
+	</aside>
+</div>
+<div class="footer">
+	<a href="/">← home</a>	<script src="/assets/js/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+</div>
 		</main>
 	</body>
 </html>

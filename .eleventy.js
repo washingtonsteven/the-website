@@ -1,10 +1,27 @@
+
+const pluginTOC = require('eleventy-plugin-toc');
+const markdownItAnchor = require("markdown-it-anchor");
+const markdownIt = require("markdown-it");
+
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("things/**/*.{css,js}");
 	eleventyConfig.addCollection("posts", function(collectionApi) {
 		const postsCollection = collectionApi.getFilteredByGlob("blog/**/*.md").filter((item) => {
 			return !item.data.draft;
+		}).sort((a, b) => {
+			return (new Date(a).getTime()) - (new Date(b).getTime());
 		});
-		console.log(postsCollection);
 		return postsCollection;
 	});
+	eleventyConfig.addFilter("prettydate", function(value) {
+		let theDate = value;
+		if (!(value instanceof Date)) {
+			theDate = new Date(value);
+		}
+
+		return theDate.toLocaleDateString();
+	});
+
+	eleventyConfig.setLibrary("md", markdownIt({ html: true }).use(markdownItAnchor));
+	eleventyConfig.addPlugin(pluginTOC);
 }
