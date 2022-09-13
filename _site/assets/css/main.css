@@ -69,6 +69,7 @@ body {
 	background: var(--dark-bg);
 	font-family: "PT Sans";
 	color: var(--dark-text);
+	padding: 1em;
 }
 
 main {
@@ -153,6 +154,15 @@ nav.toc {
 	position:sticky;
 	top: 1em;
 	font-size: 0.75rem;
+}
+
+@media screen and (max-width: 900px) {
+	.blog-content {
+		grid-template-columns: 100%;
+	}
+	nav.toc {
+		display: none;
+	}
 }
 
 nav.toc ol {
