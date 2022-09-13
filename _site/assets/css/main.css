@@ -141,13 +141,13 @@ small {
 	font-size: 0.75rem;
 }
 
-main.blog {
-	width: auto;
-}
-
 .blog-content {
 	display: grid;
 	grid-template-columns: 70% auto;
+}
+
+.blog-content article pre {
+	tab-size: 4;
 }
 
 nav.toc {
