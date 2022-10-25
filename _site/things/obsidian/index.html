@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Obsidian Widgets</title>
+	</head>
+	<body>
+		<main></main>
+		<script>
+			window.weather = (/** @type HTMLElement */ mainEl) => {
+				mainEl.style.maxWidth = "400px";
+
+				//via weatherwidget.io (translated)
+				const a = document.createElement("a");
+				a.classList.add("weatherwidget-io");
+				a.setAttribute("href", "https://forecast7.com/en/42d42n71d15/02474/");
+				a.dataset.theme = "original";
+				a.dataset.label_1 = "WEATHER";
+				mainEl.appendChild(a);
+
+				const firstScript = document.getElementsByTagName("script")[0];
+				if (!document.getElementById('weatherwidget-io-js')) {
+					const el = document.createElement("script");
+					el.id = "weatherwidget-io-js";
+					el.src = "https://weatherwidget.io/js/widget.min.js";
+					firstScript.parentNode.insertBefore(el, firstScript);
+				}
+			}
+
+			const init = () => {
+				const mainEl = document.querySelector("main");
+				const widgetName = window.location.hash.replace(/^#/, "");
+				
+				if (typeof window[widgetName] === "function") {
+					console.log(`Running ${widgetName}`)
+					window[widgetName](mainEl);
+				} else {
+					console.log(`${widgetName} not found.`, window[widgetName]);
+				}
+			}
+
+			init();
+		</script>
+	</body>
+</html>
