@@ -2,13 +2,17 @@
 <html>
 	<head>
 		<title>Obsidian Widgets</title>
+		<style>
+			html, body { margin: 0; padding: 0; }
+			main.weather {
+				max-width: 400px;
+			}
+		</style>
 	</head>
 	<body>
 		<main></main>
 		<script>
 			window.weather = (/** @type HTMLElement */ mainEl) => {
-				mainEl.style.maxWidth = "400px";
-
 				//via weatherwidget.io (translated)
 				const a = document.createElement("a");
 				a.classList.add("weatherwidget-io");
@@ -31,7 +35,8 @@
 				const widgetName = window.location.hash.replace(/^#/, "");
 				
 				if (typeof window[widgetName] === "function") {
-					console.log(`Running ${widgetName}`)
+					console.log(`Running ${widgetName}`);
+					mainEl.classList.add(widgetName);
 					window[widgetName](mainEl);
 				} else {
 					console.log(`${widgetName} not found.`, window[widgetName]);
