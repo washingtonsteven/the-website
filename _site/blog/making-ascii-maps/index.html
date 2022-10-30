@@ -19,8 +19,8 @@
 		<h2>i thought too much about this</h2>
 		<h3 id="what's-a-map%3F" tabindex="-1">what's a map?</h3>
 <p>In creating the <a href="/blog/creating-twine-format">explorer format</a>, I wanted to have easy support for doing 2D, Super Metroid-style maps. In essence this is a grid, which each block on the grid showing a specific style of square or rectangle, correlating with the area the player is in.</p>
-<p><img src="/blog/images/retropixel-net-brinstar.gif" alt="Super Metroid Map of Brinstar"></p>
-<caption>Super Metroid Map of Brinstar</caption>
+<p class="img"><img src="/blog/images/retropixel-net-brinstar.gif" alt="Super Metroid Map of Brinstar" /></p>
+<p class="caption">Super Metroid Map of Brinstar</p>
 <p>Ignoring the text labels (and elevator shafts), essentially this map shows two things:</p>
 <ol>
 <li>Whether a grid on the map is part of the map (pink) or not (black).</li>
@@ -43,8 +43,8 @@ xxxxxxxxxx
 </code></pre>
 <p>Here <code>x</code> means &quot;The player can't go here&quot; and <code>0</code> means &quot;the player can be here&quot;</p>
 <p>And here's how it would appear:</p>
-<p><img src="/blog/images/map-screenshot.png" alt="Screenshot of the above map on a grid"></p>
-<caption>Screenshot of the above map on a grid</caption>
+<p class="img"><img src="/blog/images/map-screenshot.png" alt="Screenshot of the above map on a grid" /></p>
+<p class="caption">Screenshot of the above map on a grid</p>
 <p>Easy! Time to wipe our hands and call it a day, except...</p>
 <h3 id="walls" tabindex="-1">walls</h3>
 <p>So we've achieved goal #1, show where the player can be. But what about goal #2, show the connections between rooms?</p>
@@ -146,8 +146,8 @@ xxxxxxxxxx
 </code></pre>
 <p>(note: I did set up some of the interior walls to &quot;double up&quot; and show on both adjacent blocks in order to be more prominent, but how that is displayed can be up to you!)</p>
 <p>And that comes out looking something like this:</p>
-<p><img src="/blog/images/mapwalls-screenshot.png" alt="The same Map screnshots from earlier, but with borders highlights in yellow"></p>
-<caption>The same Map screnshots from earlier, but with borders highlights in yellow</caption>
+<p class="img"><img src="/blog/images/mapwalls-screenshot.png" alt="The same Map screnshots from earlier, but with borders highlights in white"></p>
+<p class="caption">The same Map screnshots from earlier, but with borders highlights in white</p>
 <p>We now have our small use case fulfilling the above criteria:</p>
 <ol>
 <li>We know where the player can and can't be</li>

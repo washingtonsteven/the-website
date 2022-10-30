@@ -54,6 +54,8 @@
 	--dark-text: #ccc;
 	--dark-accent: #af0872;
 	--dark-link: #7899d4;
+	--accent-dark-bg: #515189;
+	--accent-dark-bg-dim: #3d3d69;
 }
 
 body, html {
@@ -152,6 +154,10 @@ small {
 	grid-template-columns: 70% auto;
 }
 
+.blog-content article ol li, .block-content article ul li {
+	margin-bottom: 0.2rem;
+}
+
 .blog-content article pre {
 	tab-size: 4;
 }
@@ -162,6 +168,42 @@ small {
 	background: #2b2b2b;
 	color: #f8f8f2;
 	padding: 0 5px;
+}
+
+.blog-content article pre > code:not(.hljs) {
+	display: block;
+	padding: 0.5rem;
+}
+
+.blog-content article table {
+	margin: 1.5rem auto;
+	background: var(--accent-dark-bg);
+	color: var(--dark-text);
+	border-collapse: collapse;
+}
+
+.blog-content article table td, .blog-content article table th {
+	padding: 0.3rem 0.6rem;
+}
+
+.blog-content article table th {
+	border-bottom: solid 2px currentColor;
+}
+
+.blog-content article table tr:nth-child(even) {
+	background-color: var(--accent-dark-bg-dim);
+}
+
+.blog-content article p.img {
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.blog-content article p.caption {
+	text-align: center;
+	font-style: italic;
+	font-size: 0.75rem;
+	margin-top: 0;
 }
 
 nav.toc {

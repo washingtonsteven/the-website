@@ -10,8 +10,8 @@ date: 2022-10-30T00:00:00-0400
 
 In creating the [explorer format](/blog/creating-twine-format), I wanted to have easy support for doing 2D, Super Metroid-style maps. In essence this is a grid, which each block on the grid showing a specific style of square or rectangle, correlating with the area the player is in.
 
-![Super Metroid Map of Brinstar](/blog/images/retropixel-net-brinstar.gif)
-<caption>Super Metroid Map of Brinstar</caption>
+<p class="img"><img src="/blog/images/retropixel-net-brinstar.gif" alt="Super Metroid Map of Brinstar" /></p>
+<p class="caption">Super Metroid Map of Brinstar</p>
 
 Ignoring the text labels (and elevator shafts), essentially this map shows two things:
 
@@ -43,8 +43,8 @@ Here `x` means "The player can't go here" and `0` means "the player can be here"
 
 And here's how it would appear:
 
-![Screenshot of the above map on a grid](/blog/images/map-screenshot.png)
-<caption>Screenshot of the above map on a grid</caption>
+<p class="img"><img src="/blog/images/map-screenshot.png" alt="Screenshot of the above map on a grid" /></p>
+<p class="caption">Screenshot of the above map on a grid</p>
 
 Easy! Time to wipe our hands and call it a day, except...
 
@@ -115,8 +115,8 @@ xxxxxxxxxx
 
 And that comes out looking something like this:
 
-![The same Map screnshots from earlier, but with borders highlights in yellow](/blog/images/mapwalls-screenshot.png)
-<caption>The same Map screnshots from earlier, but with borders highlights in yellow</caption>
+<p class="img"><img src="/blog/images/mapwalls-screenshot.png" alt="The same Map screnshots from earlier, but with borders highlights in white"></p>
+<p class="caption">The same Map screnshots from earlier, but with borders highlights in white</p>
 
 We now have our small use case fulfilling the above criteria:
 
