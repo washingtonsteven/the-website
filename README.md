@@ -10,5 +10,11 @@ simple as can be
 ## run for yourself
 
 ```sh
+yarn serve
+```
+
+or
+
+```sh
 npx @11ty/eleventy --serve
 ```

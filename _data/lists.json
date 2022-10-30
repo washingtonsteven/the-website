@@ -77,9 +77,8 @@
 					},
 					{ 
 						"name": "world building vault site",
-						"desc": "site based on an <a href=\"https://obsidian.md\" target=\"blank\" rel=\"noopener noreferrer\">obsidian</a> vault running through notes on various story settings i've worked on",
+						"desc": "site based on an <a href=\"https://obsidian.md\" target=\"blank\" rel=\"noopener noreferrer\">obsidian</a> vault running through notes on various story settings i've worked on.<br/>the site itself is no longer online but the source code powering it (using <a href=\"https://www.gatsbyjs.com/\" target=\"blank\" rel=\"noopener noreferrer\">gatsby</a>) is still up",
 						"links": [
-							{ "title": "site", "link": "https://swash-world-building.netlify.app/" },
 							{ "title": "source", "link": "https://github.com/washingtonsteven/gatsby-swash-world-building" }
 						]
 					}

@@ -5,6 +5,7 @@ const markdownIt = require("markdown-it");
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("things/**/*.{css,js,png,jpg,gif,svg}");
+	eleventyConfig.addPassthroughCopy("blog/**/*.{png,jpg,gif,svg}");
 	eleventyConfig.addCollection("posts", function(collectionApi) {
 		const postsCollection = collectionApi.getFilteredByGlob("blog/**/*.md").filter((item) => {
 			return !item.data.draft;
