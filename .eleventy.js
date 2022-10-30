@@ -4,8 +4,9 @@ const markdownItAnchor = require("markdown-it-anchor");
 const markdownIt = require("markdown-it");
 
 module.exports = function(eleventyConfig) {
-	eleventyConfig.addPassthroughCopy("things/**/*.{css,js,png,jpg,gif,svg}");
-	eleventyConfig.addPassthroughCopy("blog/**/*.{png,jpg,gif,svg}");
+	eleventyConfig.addPassthroughCopy("assets"); // css, js, fonts
+	eleventyConfig.addPassthroughCopy("things"); // random things
+	eleventyConfig.addPassthroughCopy("blog/images"); // blog images
 	eleventyConfig.addCollection("posts", function(collectionApi) {
 		const postsCollection = collectionApi.getFilteredByGlob("blog/**/*.md").filter((item) => {
 			return !item.data.draft;
