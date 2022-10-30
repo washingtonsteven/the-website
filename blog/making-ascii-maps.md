@@ -11,7 +11,7 @@ date: 2022-10-30T00:00:00-0400
 In creating the [explorer format](/blog/creating-twine-format), I wanted to have easy support for doing 2D, Super Metroid-style maps. In essence this is a grid, which each block on the grid showing a specific style of square or rectangle, correlating with the area the player is in.
 
 <p class="img"><img src="/blog/images/retropixel-net-brinstar.gif" alt="Super Metroid Map of Brinstar" /></p>
-<p class="caption">Super Metroid Map of Brinstar</p>
+<p class="caption">Super Metroid Map of Brinstar (via <a href="https://rpg.retropixel.net/metroid3/maps.html" target="_blank" rel="noopener noreferrer">retropixel.net</a>)</p>
 
 Ignoring the text labels (and elevator shafts), essentially this map shows two things:
 
