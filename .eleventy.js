@@ -26,4 +26,6 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.setLibrary("md", markdownIt({ html: true }).use(markdownItAnchor));
 	eleventyConfig.addPlugin(pluginTOC);
+
+	eleventyConfig.addGlobalData("buster", Math.floor(Math.random() * (new Date()).getTime()));
 }
