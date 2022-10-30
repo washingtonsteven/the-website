@@ -154,6 +154,19 @@ small {
 	grid-template-columns: 70% auto;
 }
 
+.blog-content h1 {
+	margin-bottom: 0.5rem;
+}
+
+.blog-content p.subtitle {
+	font-size: 0.9rem;
+	font-style: italic;
+}
+
+.blog-content article h1 {
+	font-size: 2rem;
+}
+
 .blog-content article ol li, .block-content article ul li {
 	margin-bottom: 0.2rem;
 }

@@ -16,8 +16,8 @@
 	<article>
 		<small class="date">10/30/2022</small>
 		<h1>making maps with just ascii</h1>
-		<h2>i thought too much about this</h2>
-		<h3 id="what's-a-map%3F" tabindex="-1">what's a map?</h3>
+		<p class="subtitle">something i thought too much about maybe</p>
+		<h2 id="what's-a-map%3F" tabindex="-1">what's a map?</h2>
 <p>In creating the <a href="/blog/creating-twine-format">explorer format</a>, I wanted to have easy support for doing 2D, Super Metroid-style maps. In essence this is a grid, which each block on the grid showing a specific style of square or rectangle, correlating with the area the player is in.</p>
 <p class="img"><img src="/blog/images/retropixel-net-brinstar.gif" alt="Super Metroid Map of Brinstar" /></p>
 <p class="caption">Super Metroid Map of Brinstar</p>
@@ -26,7 +26,7 @@
 <li>Whether a grid on the map is part of the map (pink) or not (black).</li>
 <li>How each grid block connects (or doesn't connect) to adjacent blocks, visualized by &quot;walls.&quot;</li>
 </ol>
-<h3 id="use-in-twine" tabindex="-1">use in twine</h3>
+<h2 id="use-in-twine" tabindex="-1">use in twine</h2>
 <p>Twine (or Twee, in this case), is basically a fancy way of reading a text file (much like how this page is a fancy way of reading a <a href="https://github.com/washingtonsteven/the-website/blob/main/blog/making-ascii-maps.md">Markdown file</a>). It would be great to have the map data in that text file as well, and in a fairly easy to read and write format.</p>
 <p>That last requirement basically rules out XML (cause it isn't 2009 anymore) and JSON (I love you JSON, but visualizing a map from JSON is a nightmare).</p>
 <p>A simple map could be done using just ASCII characters, especially if you author it in a monospace font. Here's a simple 10x10 map:</p>
@@ -46,10 +46,10 @@ xxxxxxxxxx
 <p class="img"><img src="/blog/images/map-screenshot.png" alt="Screenshot of the above map on a grid" /></p>
 <p class="caption">Screenshot of the above map on a grid</p>
 <p>Easy! Time to wipe our hands and call it a day, except...</p>
-<h3 id="walls" tabindex="-1">walls</h3>
+<h2 id="walls" tabindex="-1">walls</h2>
 <p>So we've achieved goal #1, show where the player can be. But what about goal #2, show the connections between rooms?</p>
 <p>Surely we'll need more than <code>x</code> and <code>0</code> to denote whether a block has walls. But how? We could use a separate piece of data to say something like &quot;coordinate (1,0) has walls on the top and right, but not bottom and left,&quot; but that starts getting real clunky again. Is there a way we can encode that information into a single character?</p>
-<h3 id="wall-states" tabindex="-1">wall states</h3>
+<h2 id="wall-states" tabindex="-1">wall states</h2>
 <p>So, if we look at a single block, we can have a wall on top, right, bottom, and left, and any combination of those, which is 16 combinations:</p>
 <ol>
 <li>no walls</li>
@@ -70,7 +70,7 @@ xxxxxxxxxx
 <li>top, left, bottom, right (all of the walls!)</li>
 </ol>
 <p>Now, this would work with any system, but 16 is a number system we see a lot, especially in web development: hexadecimal! We can attribute a character 0-9 and a-f to represent each of the 16 states above</p>
-<h3 id="sorta-random-choice" tabindex="-1">sorta random choice</h3>
+<h2 id="sorta-random-choice" tabindex="-1">sorta random choice</h2>
 <p>We can pick an arbitrary mapping of hex char to wall configuration, and that'll work fine as long as it's clear in our code (i.e. a <code>const</code> somewhere). But we can do one better (or worse, depending on how much you understand of binary).</p>
 <p>Since we have 4 walls per block, and the max number of bits a hex char would need is 4, we can do a kinda sorta bitmask to map a hex character to a wall state.</p>
 <p>First, we do have to (arbitrarily) assign a bit to a wall. I chose to go from most significant bit to least, following the same order that things like <code>margin</code> and <code>border</code> follow in CSS: top, right, bottom, left:</p>
@@ -131,7 +131,7 @@ xxxxxxxxxx
 </tbody>
 </table>
 <p>So now we can use a single character to determine how many walls need to be on each part of the map. Using this we can create single rooms, hallways, and corners fairly easily!</p>
-<h3 id="final-result" tabindex="-1">final result</h3>
+<h2 id="final-result" tabindex="-1">final result</h2>
 <p>So now we can take our map from earlier, and turn each grid into a hex char that represents the walls around it:</p>
 <pre><code>xxxxxxxxxx
 xxxx9cxxxx
@@ -153,7 +153,7 @@ xxxxxxxxxx
 <li>We know where the player can and can't be</li>
 <li>We know how each block connects to the others (in this case, this is one large room with some walls the player has to go around)</li>
 </ol>
-<h3 id="conclusion" tabindex="-1">conclusion</h3>
+<h2 id="conclusion" tabindex="-1">conclusion</h2>
 <p>This was my first time working directly with bit maps and bit masking. You can see the code that taskes the ascii char and converts it to drawing a border in the <a href="https://github.com/washingtonsteven/explorer-format/blob/main/src/CanvasMap.ts#L334-L385">explorer format source</a>. Could I have made that code nicer? Probably. There's maybe some bitshifting that can happen to make this a bit smoother, but that's for another time, I guess!</p>
 
 	</article>

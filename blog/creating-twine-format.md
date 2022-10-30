@@ -9,7 +9,7 @@ date: 2022-09-12T00:00:00-0400
 with 11ty, markdown is processed through liquid. which is a problem if you want to output literal braces (like you're writing about handlebars or twine). wrapping the whole post in "raw" prevents the liquid processing, and everything happens in handlebars
 {% endcomment %}
 {% raw %}
-### what?
+## what?
 
 First. [Twine.](https://twinery.org) Twine is a piece of software that let's you write nonlinear stories. It keeps track of chunks of story (so-called "passages") and the links between them (well, not really, but we'll get there maybe). Basically it keeps track of a graph of nodes.
 
@@ -29,7 +29,7 @@ There are several popular ones out there: Harlowe is the default for the Twine a
 
 <small>_* You can use the Twine story data pretty much anywhere you can process XML._</small>
 
-### why?
+## why?
 
 Three reasons:
 
@@ -39,7 +39,7 @@ Three reasons:
 
 Reason #2 is why I called the format "Explorer." Kind of giving a sense that you can write a "dungeon" that you can explore. Or crawl through. Maybe I should call it "Crawler." It's not too late.
 
-### how?
+## how?
 
 [Check out my commits if you just want to go through that way](https://github.com/washingtonsteven/explorer-format/commits/main)
 
@@ -82,7 +82,7 @@ window.storyFormat({
 
 Publish a story with this format and you'll see...nothing. Unless you look at the source for your page. Twine replaced `{{STORY_NAME}}` with the name of your story, and `{{STORY_DATA}}` with what is basically an XML representation of your story.
 
-#### inserting your javascript
+### inserting your javascript
 
 Now that you have HTML and `STORY_DATA`, your story format will need some JS to convert that `STORY_DATA` to something the user can see. That JS can get included directly in the `source` property:
 
@@ -106,7 +106,7 @@ window.storyFormat({
 
 You may be starting to see a problem, writing HTML and Javascript within a string is a pain. So we turn to builds scripts to put it all together for us.
 
-#### building the format json
+### building the format json
 
 I ended up writing a script that takes the story format javascript I wrote (in `index.js`), a handlebars template for the page body, and mashes them together to make the format you see above:
 
@@ -154,11 +154,11 @@ fs.writeFileSync(
 
 Boom! We have a gnarly looking `format.js`, but we are no longer directly editing that file, so that's fine!
 
-#### side note: building js
+### side note: building js
 
 In reality, I'm also not directly editing `index.js` to add my Story Format javascript. Instead I'm using [Parcel](https://parceljs.org/) to build `index.ts` (whoo Typescript!) and minify it to `index.js`, which then follows the process above. This is really nice for working with TS and ES6 modules, though using sourcemaps is wonky (since the JS is added to the page via the source string rather than directly). You can use any build system you want here (or none!).
 
-#### getting your story data: tw-storydata
+### getting your story data: tw-storydata
 
 The `<tw-storydata>` node has all the information you need to load the data about your story:
 
@@ -187,7 +187,7 @@ storydataNode.getAttribute("name"); //returns "Story Name"`.
 
 Rinse and repeat to get all of the data about the story
 
-#### getting your passage data: tw-passagedata
+### getting your passage data: tw-passagedata
 
 All of your passages will show up as individual `<tw-passagedata>` nodes, which you can get with:
 
@@ -234,7 +234,7 @@ const passages = [
 ]
 ```
 
-#### side note: what about links?
+### side note: what about links?
 
 Remember when I said Twine only \*sorta\* keeps track of links between passages? If you look at the data that's output, there is no information on links between passages! While Twine understands wiki-style links in the program itself, it's up to you, dear story format developer, to create those links yourself.
 
@@ -253,7 +253,7 @@ For the above passages, this will convert that first passage into something like
 },
 ```
 
-#### side note: user scripts and user styles
+### side note: user scripts and user styles
 
 Within `tw-storydata` and along side your `tw-passagedata` nodes, there will be a `script` and a `style` node. These will contain the story author's JS and CSS that they added via Twine (or in a specially tagged passage, depending on your compiler). You can take the contents of these nodes, and place them in the page in new `<style>` and `<script>` tags.
 
@@ -265,7 +265,7 @@ scriptElem.innerHTML = storyDataNode.querySelector("script#twine-user-script").i
 document.body.appendChild(scriptElem);
 ```
 
-#### showing the first passage
+### showing the first passage
 
 This is fairly easy. But first we'll have to add a place to put the passage content in our HTML template:
 
@@ -313,7 +313,7 @@ passageContainer.innerHTML = firstPassage.content;
 
 Now you should be seeing your first passage!
 
-#### clicky clicky links
+### clicky clicky links
 
 Now that we have a passage on the screen, the user can click a link to go to the next one. But clicking the link doesn't do anything.
 
@@ -343,7 +343,7 @@ passageContainer.addEventListener("click", (e) => {
 
 That's pretty much it. Every time you click an `<a data-passage-name="something">` tag, it should replace the `passageContainer` with the content of the new passage!
 
-### done!
+## done!
 
 At this point we have a pretty workable story format (I think, I wrote this whole thing as a sort of fever dream). It looks ugly now, but we can make it better with:
 
