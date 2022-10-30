@@ -113,7 +113,7 @@ xxxxxxxxxx
 ```
 (note: I did set up some of the interior walls to "double up" and show on both adjacent blocks in order to be more prominent, but how that is displayed can be up to you!)
 
-(double note: looking back, using `x` to denote a non-space is still a little rough to read here. However, since the only valid values for a space is `[0-9a-f]`, you can use whatever other character to denote a non-space, like `-`, `_` or even ` ` (space)!)
+(double note: looking back, using `x` to denote a non-space is still a little rough to read here. However, since the only valid values for a space is `[0-9a-f]`, you can use whatever other character to denote a non-space, like `-`, `_` or even <code>&nbsp;</code> (space)!)
 
 And that comes out looking something like this:
 
