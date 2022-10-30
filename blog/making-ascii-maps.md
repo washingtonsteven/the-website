@@ -20,7 +20,7 @@ Ignoring the text labels (and elevator shafts), essentially this map shows two t
 
 ## use in twine
 
-Twine (or Twee, in this case), is basically a fancy way of reading a text file (much like how this page is a fancy way of reading a [Markdown file](https://github.com/washingtonsteven/the-website/blob/main/blog/making-ascii-maps.md)). It would be great to have the map data in that text file as well, and in a fairly easy to read and write format.
+Twine (or Twee, in this case), is basically a fancy way of reading a text file (much like how this page is a fancy way of reading a <a href="https://github.com/washingtonsteven/the-website/blob/main/blog/making-ascii-maps.md" target="_blank" rel="noopener noreferrer">Markdown file</a>). It would be great to have the map data in that text file as well, and in a fairly easy to read and write format.
 
 That last requirement basically rules out XML (cause it isn't 2009 anymore) and JSON (I love you JSON, but visualizing a map from JSON is a nightmare).
 
@@ -125,4 +125,4 @@ We now have our small use case fulfilling the above criteria:
 
 ## conclusion
 
-This was my first time working directly with bit maps and bit masking. You can see the code that taskes the ascii char and converts it to drawing a border in the [explorer format source](https://github.com/washingtonsteven/explorer-format/blob/main/src/CanvasMap.ts#L334-L385). Could I have made that code nicer? Probably. There's maybe some bitshifting that can happen to make this a bit smoother, but that's for another time, I guess!
+This was my first time working directly with bit maps and bit masking. You can see the code that taskes the ascii char and converts it to drawing a border in the <a href="https://github.com/washingtonsteven/explorer-format/blob/main/src/CanvasMap.ts#L334-L385" target="_blank" rel="noopener noreferrer">explorer format source</a>. Could I have made that code nicer? Probably. There's maybe some bitshifting that can happen to make this a bit smoother, but that's for another time, I guess!

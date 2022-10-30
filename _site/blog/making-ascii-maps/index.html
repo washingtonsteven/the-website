@@ -27,7 +27,7 @@
 <li>How each grid block connects (or doesn't connect) to adjacent blocks, visualized by &quot;walls.&quot;</li>
 </ol>
 <h2 id="use-in-twine" tabindex="-1">use in twine</h2>
-<p>Twine (or Twee, in this case), is basically a fancy way of reading a text file (much like how this page is a fancy way of reading a <a href="https://github.com/washingtonsteven/the-website/blob/main/blog/making-ascii-maps.md">Markdown file</a>). It would be great to have the map data in that text file as well, and in a fairly easy to read and write format.</p>
+<p>Twine (or Twee, in this case), is basically a fancy way of reading a text file (much like how this page is a fancy way of reading a <a href="https://github.com/washingtonsteven/the-website/blob/main/blog/making-ascii-maps.md" target="_blank" rel="noopener noreferrer">Markdown file</a>). It would be great to have the map data in that text file as well, and in a fairly easy to read and write format.</p>
 <p>That last requirement basically rules out XML (cause it isn't 2009 anymore) and JSON (I love you JSON, but visualizing a map from JSON is a nightmare).</p>
 <p>A simple map could be done using just ASCII characters, especially if you author it in a monospace font. Here's a simple 10x10 map:</p>
 <pre><code>xxxxxxxxxx
@@ -154,7 +154,7 @@ xxxxxxxxxx
 <li>We know how each block connects to the others (in this case, this is one large room with some walls the player has to go around)</li>
 </ol>
 <h2 id="conclusion" tabindex="-1">conclusion</h2>
-<p>This was my first time working directly with bit maps and bit masking. You can see the code that taskes the ascii char and converts it to drawing a border in the <a href="https://github.com/washingtonsteven/explorer-format/blob/main/src/CanvasMap.ts#L334-L385">explorer format source</a>. Could I have made that code nicer? Probably. There's maybe some bitshifting that can happen to make this a bit smoother, but that's for another time, I guess!</p>
+<p>This was my first time working directly with bit maps and bit masking. You can see the code that taskes the ascii char and converts it to drawing a border in the <a href="https://github.com/washingtonsteven/explorer-format/blob/main/src/CanvasMap.ts#L334-L385" target="_blank" rel="noopener noreferrer">explorer format source</a>. Could I have made that code nicer? Probably. There's maybe some bitshifting that can happen to make this a bit smoother, but that's for another time, I guess!</p>
 
 	</article>
 	<aside>
