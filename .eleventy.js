@@ -10,7 +10,7 @@ module.exports = function(eleventyConfig) {
 		const postsCollection = collectionApi.getFilteredByGlob("blog/**/*.md").filter((item) => {
 			return !item.data.draft;
 		}).sort((a, b) => {
-			return (new Date(a).getTime()) - (new Date(b).getTime());
+			return (new Date(b.data.date).getTime()) - (new Date(a.data.date).getTime());
 		});
 		return postsCollection;
 	});

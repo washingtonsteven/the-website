@@ -13,9 +13,9 @@ i'm <strong>steve</strong>. i write everything in lowercase.
 {{#if collections.posts}}
 <h2>posts</h2>
 
-<ul>
+<ul class="posts">
 {{#each collections.posts}}
-<li><a href="{{this.url}}">{{data.title}}</a></li>
+<li><a href="{{this.url}}">{{data.title}}</a> <small>({{prettydate data.date}})</small></li>
 {{/each}}
 </ul>
 

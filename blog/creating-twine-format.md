@@ -3,6 +3,7 @@ layout: blogbase
 title: creating a twine story format
 subtitle: you probably don't need to do this
 includehighlight: true
+date: 2022-09-12T00:00:00-0400
 ---
 {% comment %}
 with 11ty, markdown is processed through liquid. which is a problem if you want to output literal braces (like you're writing about handlebars or twine). wrapping the whole post in "raw" prevents the liquid processing, and everything happens in handlebars
