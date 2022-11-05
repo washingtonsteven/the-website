@@ -1,7 +1,5 @@
-
-
 {{#*inline "link"}}
-<a href="{{link}}" {{#if linkTitle}}class="link-title"{{/if}} target="blank" {{#if external}}rel="noopener noreferrer"{{/if}}>{{title}}{{#if external}} {{>externalIcon }}{{/if}}</a>
+<a href="{{link}}" {{#if linkTitle}}class="link-title"{{/if}} target="_blank" {{#if external}}rel="noopener noreferrer"{{/if}}>{{title}}{{#if appendExplorerFormatSize}} ({{@root.explorerFormatSize}}){{/if}}{{#if external}} {{>externalIcon }}{{/if}}</a>
 {{~/inline}}
 
 {{#*inline "listItems"}}

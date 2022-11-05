@@ -2,6 +2,8 @@
 const pluginTOC = require('eleventy-plugin-toc');
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownIt = require("markdown-it");
+const fs = require("fs");
+const path = require("path");
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("assets"); // css, js, fonts
@@ -28,4 +30,13 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(pluginTOC);
 
 	eleventyConfig.addGlobalData("buster", Math.floor(Math.random() * (new Date()).getTime()));
+
+	const formatFile = path.resolve(__dirname, "things/explorer-format/format.js");
+	if (fs.existsSync(formatFile)) {
+		const stats = fs.statSync(formatFile);
+		if (stats && stats.size) {
+			const sizeInMB = stats.size / Math.pow(1024, 2);
+			eleventyConfig.addGlobalData("explorerFormatSize", `${sizeInMB.toFixed(2)}MB`);
+		}
+	}
 }
