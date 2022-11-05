@@ -6,7 +6,49 @@ layout: base
 
 i'm <strong>stv</strong>. i write everything in lowercase.
 
-{{> lists}}
+{{#each lists}}
+	<h2>{{title}}</h2>
+	<ul>
+		{{#each items}}
+		<li>
+			{{#if link}}
+				<a 
+					href="{{link}}" 
+					class="link-title" 
+					target="_blank"
+					{{#if external}}rel="noopener noreferrer"{{/if}}
+				>
+					{{name}}
+					{{#if external}} {{> externalIcon}}{{/if}}
+				</a>
+			{{else}}
+				<span class="link-title">{{name}}</span>
+			{{/if}}
+			{{#if links}}
+				<span class="links">
+				(
+					{{#each links}}
+						{{#if @index}}, {{/if}}
+						<a
+							href="{{link}}"
+							target="_blank"
+					{{#if external}}rel="noopener noreferrer"{{/if}}
+						>
+							{{title}}
+							{{#if appendExplorerFormatSize}} {{@root.explorerFormatSize}} {{/if}}
+					{{#if external}} {{> externalIcon}}{{/if}}
+						</a>
+					{{/each}}
+				)
+				</span>
+			{{/if}}
+			{{#if desc}}
+				<p class="desc">{{{desc}}}</p>
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+{{/each}}
 
 <hr />
 
