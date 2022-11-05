@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+// usage: new_post "Post Title Here" ["post subtitle here"] [includeHighlight - bool]
+
+const fs = require("fs");
+const path = require("path");
+const args = process.argv;
+
+const printUsage = () => {
+	console.log(`\nusage: new_post "Post Title Here" ["post subtitle here"] [includeHighlight - bool]`);
+}
+
+// args[0] is `node`
+// args[1] is this script
+// args[2+] are args passed to this
+if (!args[2]) {
+	console.error("Please pass in a post name");
+	printUsage();
+	process.exit(1);
+}
+
+const slugify = s => {
+	// Mostly from: https://gist.github.com/mathewbyrne/1280286
+	return s.toString().toLowerCase()
+		.replace(/\s+/g, "-")        // replace spaces with -
+		.replace(/[^\w\-]+/g, "")    // replace non-word chars with nothing
+		.replace(/\-\-+/g, "-")      // replace multiple - in a row with one -
+		.replace(/^-+/, '')          // trim - from start
+		.replace(/-+$/, "");         // trim - from end
+}
+
+const postName = args[2];
+const postSlug = slugify(postName);
+
+const destination = path.resolve(__dirname, "../", "blog", `${postSlug}.md`);
+
+if (fs.existsSync(destination)) {
+	console.error(`${postName} already exists. Please choose another name or delete this file: ${destination}`);
+	printUsage();
+	process.exit(1);
+}
+
+const subtitle = args[3] || "";
+const includeHighlight = args[4] ? args[4].toLowerCase() : "false";
+
+const now = (new Date()).toISOString();
+
+const frontmatter = `
+---
+layout: blogbase
+title: ${postName}
+subtitle: ${subtitle}
+includehighlight: ${includeHighlight}
+date: ${now}
+draft: true
+---
+
+`.replace(/^[\r\n]+/, ''); // remove the starting line break that looks nice here
+
+fs.openSync(destination, 'w', 0o644);
+fs.writeFileSync(destination, frontmatter);
+console.log(`Wrote post "${postName}" to ${destination}`);
