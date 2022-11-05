@@ -12,6 +12,7 @@
     "markdown-it-anchor": "^8.6.5"
   },
 	"scripts": {
-		"serve": "npx @11ty/eleventy --serve"
+		"serve": "NODE_ENV=development npx @11ty/eleventy --serve",
+		"build": "NODE_ENV=production npx @11ty/eleventy"
 	}
 }

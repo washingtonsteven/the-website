@@ -1,9 +1,6 @@
 ---
 layout: base
 ---
-{{#*inline "nav"}}
-<a href="/">← home</a>
-{{~/inline}}
 
 {{#if includehighlight}}
 <link rel="stylesheet"
@@ -11,6 +8,9 @@ layout: base
 {{/if}}
 <div class="header">
 	{{> nav}}
+	{{#if draft}}
+		<div class="warning">This is a draft post! Set <code>draft: false</code> or remove the key from your post frontmatter to publish it live</div>
+	{{/if}}
 </div>
 <div class="blog-content">
 	<article>
@@ -24,6 +24,7 @@ layout: base
 	</aside>
 </div>
 <div class="footer">
+	<br/>
 	{{> nav}}
 	{{#if includehighlight}}
 	<script src="/assets/js/highlight.min.js"></script>

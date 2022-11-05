@@ -4,6 +4,8 @@ const markdownIt = require("markdown-it");
 const fs = require("fs");
 const path = require("path");
 
+const isDev = Boolean(process.env.NODE_ENV === "development");
+
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("assets"); // css, js, fonts
 	eleventyConfig.addPassthroughCopy("things"); // random things
@@ -12,7 +14,7 @@ module.exports = function (eleventyConfig) {
 		const postsCollection = collectionApi
 			.getFilteredByGlob("blog/**/*.md")
 			.filter((item) => {
-				return !item.data.draft;
+				return isDev || !item.data.draft;
 			})
 			.sort((a, b) => {
 				return (

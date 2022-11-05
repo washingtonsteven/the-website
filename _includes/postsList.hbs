@@ -1,0 +1,8 @@
+<ul class="posts">
+	{{#each collections.posts}}
+		<li{{#if data.draft}} class="draft"{{/if}}>
+			<a href="{{this.url}}">{{data.title}}</a> 
+			<small>({{prettydate data.date}})</small>
+		</li>
+	{{/each}}
+</ul>

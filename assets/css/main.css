@@ -152,7 +152,7 @@ p.desc .tags .tag {
 	display: inline-block;
 	font-size: 0.7rem;
 	text-align: center;
-	text-shadow: 1px 1px 2px #011627cb;
+	text-shadow: 1px 1px 2px var(--dark-bg);
 }
 
 hr {
@@ -264,4 +264,32 @@ nav.toc ol ol {
 nav.toc ol li:before {
 	content: "✨";
 	display: inline-block;
+}
+
+.header-nav {
+	background-color: var(--accent-dark-bg-dim);
+	margin: 0.2rem 0 0.5rem;
+	padding: 0.2rem 0;
+	text-align: center;
+}
+
+.header-nav a {
+	display: inline-block;
+	margin: 0 0.5rem;
+	padding: 0;
+	font-size: 0.8rem;
+}
+
+.warning {
+	background-color: var(--dark-accent);
+	padding: 1rem;
+	color: var(--dark-bg);
+}
+
+ul.posts li.draft {
+	background-color: var(--dark-accent);
+}
+
+ul.posts li.draft a {
+	color: var(--dark-bg);
 }
