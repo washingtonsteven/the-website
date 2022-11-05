@@ -4,7 +4,7 @@ layout: base
 
 <h1>stv ⭐</h1>
 
-i'm <strong>stv</strong>. i write everything in lowercase.
+i&apos;m <strong>stv</strong>. i write everything in lowercase.
 
 {{#each lists}}
 	<h2>{{title}}</h2>
@@ -32,18 +32,28 @@ i'm <strong>stv</strong>. i write everything in lowercase.
 						<a
 							href="{{link}}"
 							target="_blank"
-					{{#if external}}rel="noopener noreferrer"{{/if}}
+							{{#if external}}rel="noopener noreferrer"{{/if}}
 						>
 							{{title}}
-							{{#if appendExplorerFormatSize}} {{@root.explorerFormatSize}} {{/if}}
-					{{#if external}} {{> externalIcon}}{{/if}}
+							{{#if external}} {{> externalIcon}}{{/if}}
 						</a>
 					{{/each}}
 				)
 				</span>
 			{{/if}}
 			{{#if desc}}
-				<p class="desc">{{{desc}}}</p>
+				<p class="desc">
+					{{{desc}}}
+				
+				{{#if tags}}
+					<br/>
+					<span class="tags">
+						{{#each tags}}
+							<span class="tag">{{.}}</span>
+						{{/each}}
+					</span>
+				{{/if}}
+				</p>
 			{{/if}}
 		</li>
 		{{/each}}

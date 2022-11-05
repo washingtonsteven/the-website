@@ -137,6 +137,24 @@ p.desc {
 	font-size: 0.8rem;
 }
 
+p.desc .tags {
+	margin: 0.2rem 0;
+	display: inline-block;
+}
+
+p.desc .tags .tag {
+	margin: 0 0.2rem;
+	padding: 0.1rem 0.4rem;
+	color: var(--dark-text);
+	background-color: var(--dark-accent);
+	border-radius: 1rem;
+	min-width: calc(0.7rem * 2);
+	display: inline-block;
+	font-size: 0.7rem;
+	text-align: center;
+	text-shadow: 1px 1px 2px #011627cb;
+}
+
 hr {
 	width: 75%;
 	margin: 2rem auto;

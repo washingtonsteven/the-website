@@ -6,12 +6,12 @@ module.exports = function (configData) {
 		items: [
 			{
 				name: "explorer format",
-				tags: ["writing", "interactive-fiction", "js"],
+				tags: ["writing", "interactive-fiction", "game-dev"],
 				desc: "custom twine story format for a future version of starchaser",
 				links: [
 					{
 						title: `format file${
-							explorerFormatSize && `(${explorerFormatSize})`
+							explorerFormatSize ? ` (${explorerFormatSize})` : ""
 						}`,
 						link: "/things/explorer-format/format.js",
 					},
@@ -23,7 +23,7 @@ module.exports = function (configData) {
 			},
 			{
 				name: "starchaser",
-				tags: ["writing", "twine"],
+				tags: ["writing", "twine", "game-dev"],
 				desc: "a game/story/universe built around discovering ancient galactic secrets. something will be released soon.",
 			},
 			{
