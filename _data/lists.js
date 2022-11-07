@@ -110,10 +110,16 @@ module.exports = function (configData) {
 				desc: "eggbug!",
 			},
 			{
+				name: "github",
+				link: "https://github.com/washingtonsteven",
+				external: true,
+				desc: "return to the source"
+			},
+			{
 				name: "twitter",
 				link: "https://twitter.com/esaevian",
 				external: true,
-				desc: "same as above",
+				desc: "i have no idea what's going on over here",
 			},
 			{
 				name: "twitch",
