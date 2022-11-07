@@ -95,7 +95,7 @@ module.exports = function (configData) {
 	};
 
 	const socialsList = {
-		title: "elsewhere",
+		title: "elsewhere on the web",
 		items: [
 			{
 				name: "tumblr",
@@ -130,5 +130,5 @@ module.exports = function (configData) {
 		],
 	};
 
-	return [stuffList, socialsList];
+	return [socialsList, stuffList];
 };

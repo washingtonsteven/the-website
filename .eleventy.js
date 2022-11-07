@@ -7,7 +7,7 @@ const path = require("path");
 const isDev = Boolean(process.env.NODE_ENV === "development");
 
 module.exports = function (eleventyConfig) {
-	eleventyConfig.addPassthroughCopy("assets"); // css, js, fonts
+	eleventyConfig.addPassthroughCopy("assets"); // css, js, fonts, img
 	eleventyConfig.addPassthroughCopy("things"); // random things
 	eleventyConfig.addPassthroughCopy("blog/images"); // blog images
 	eleventyConfig.addCollection("posts", function (collectionApi) {

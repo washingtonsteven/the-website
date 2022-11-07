@@ -74,10 +74,14 @@ body {
 	padding: 1em;
 }
 
-main {
+main, footer {
 	max-width: 1024px;
 	margin: 0 auto;
 	padding: 1rem 3rem;
+}
+
+footer {
+	padding-top: 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -182,12 +186,23 @@ small {
 	margin-top: 0.5rem;
 }
 
-.blog-content h1:after {
+h1:after, h2:after, h3:after {
 	content: "";
 	display: block;
 	width: 33%;
-	height: 3px;
+	height: 2px;
 	background-color: var(--dark-accent);
+}
+
+h2:after {
+	width: 25%;
+	background-color: var(--accent-dark-bg);
+}
+
+h3:after {
+	width: 25%;
+	height: 1px;
+	background-color: #ffd700;
 }
 
 .blog-content article h1 {
