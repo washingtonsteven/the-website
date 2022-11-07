@@ -177,8 +177,17 @@ small {
 }
 
 .blog-content p.subtitle {
-	font-size: 0.9rem;
-	font-style: italic;
+	font-size: 0.8rem;
+	margin-bottom: 1.5rem;
+	margin-top: 0.5rem;
+}
+
+.blog-content h1:after {
+	content: "";
+	display: block;
+	width: 33%;
+	height: 3px;
+	background-color: var(--dark-accent);
 }
 
 .blog-content article h1 {
@@ -296,4 +305,17 @@ ul.posts li.draft {
 
 ul.posts li.draft a {
 	color: var(--dark-bg);
+}
+
+blockquote {
+	border-left: solid 3px var(--dark-accent);
+	margin: 0;
+	padding: 0.5rem 1.5rem;
+	background: var(--accent-dark-bg);
+	font-size: 0.8rem;
+}
+
+blockquote p {
+	padding: 0;
+	margin: 0;
 }

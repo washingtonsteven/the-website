@@ -3,11 +3,11 @@ layout: blogbase
 title: lastpass on android
 subtitle: only slightly frustrating
 includehighlight: false
-date: 2022-11-05T17:25:08.228Z
-draft: true
+date: 2022-11-07T17:25:08.228Z
 ---
 
-_this was originally posted on [cohost](https://cohost.org/esaevian/post/200981-lastpass-on-android). follow me over there if you like_
+> _this was originally posted on [cohost](https://cohost.org/esaevian/post/200981-lastpass-on-android). follow me over there if you like._  
+> _i don't know if i'll always copy stuff i write between the two. this is an experiment._
 
 first off, having a password manager and randomized passwords is good, do it.
 
