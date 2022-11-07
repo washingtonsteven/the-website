@@ -4,7 +4,17 @@ layout: base
 
 <h1>stv ⭐</h1>
 
-i&apos;m <strong>stv</strong>. i write everything in lowercase.
+<p>i&apos;m <strong>stv</strong>. i write everything in lowercase.</p>
+
+<pre class="block"><code>keywords:: web dev, sci-fi writing, game dev</code></pre>
+
+{{#if collections.posts}}
+	<h2>posts</h2>
+
+	{{> postsList}}
+
+	<hr />
+{{/if}}
 
 {{#each lists}}
 	<h2>{{title}}</h2>
@@ -61,11 +71,3 @@ i&apos;m <strong>stv</strong>. i write everything in lowercase.
 {{/each}}
 
 <hr />
-
-{{#if collections.posts}}
-	<h2>posts</h2>
-
-	{{> postsList}}
-
-	<hr />
-{{/if}}

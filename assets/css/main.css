@@ -193,12 +193,16 @@ small {
 	tab-size: 4;
 }
 
-.blog-content article code:not(.hljs) {
+pre.block, .blog-content article code:not(.hljs) {
 	/** These values taken from the current hljs theme */
 	/** Will probably want to update them if the hljs theme changes */
 	background: #2b2b2b;
 	color: #f8f8f2;
 	padding: 0 5px;
+}
+
+pre.block {
+	padding: 0.75rem;
 }
 
 .blog-content article pre > code:not(.hljs) {
