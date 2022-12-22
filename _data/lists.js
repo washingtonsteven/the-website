@@ -49,6 +49,7 @@ module.exports = function (configData) {
 					{
 						title: "source (glitch.com)",
 						link: "https://glitch.com/edit/#!/for-the-mania",
+						external: true,
 					},
 					{ title: "demo", link: "/things/for-the-mania" },
 				],
