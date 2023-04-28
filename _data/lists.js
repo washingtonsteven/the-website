@@ -117,12 +117,6 @@ module.exports = function (configData) {
 				desc: "return to the source"
 			},
 			{
-				name: "twitter",
-				link: "https://twitter.com/esaevian",
-				external: true,
-				desc: "i have no idea what's going on over here",
-			},
-			{
 				name: "twitch",
 				link: "https://twitch.tv/esaevian",
 				external: true,
