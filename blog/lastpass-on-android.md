@@ -21,3 +21,7 @@ first, this introduces cumulative layout shift, and when the prompt disappears i
 second, i dont have those kind of reflexes, folks.
 
 I don't do android development so I have no idea how hard this is to make consistent, or know any viable solution. this is just a complainy chost. 
+
+---
+
+edit (4/2023): this happened a while ago but due to [issues] with LastPass I'm not using it anyways. the other password manager i'm using also works a lot better on android anyway so, win-win!
