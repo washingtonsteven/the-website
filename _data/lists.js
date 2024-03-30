@@ -99,16 +99,22 @@ module.exports = function (configData) {
 		title: "elsewhere on the web",
 		items: [
 			{
+				name: "cohost",
+				link: "https://cohost.org/esaevian",
+				external: true,
+				desc: "eggbug!",
+			},
+			{
 				name: "tumblr",
 				link: "https://esaevian.tumblr.com",
 				external: true,
 				desc: "mostly reblogs of silly stuff + destiny",
 			},
 			{
-				name: "cohost",
-				link: "https://cohost.org/esaevian",
+				name: "bluesky",
+				link: "https://bsky.app/profile/esaevian.bsky.app",
 				external: true,
-				desc: "eggbug!",
+				desc: "mostly reshares (skeets?) of possums and birds and wolves",
 			},
 			{
 				name: "github",
