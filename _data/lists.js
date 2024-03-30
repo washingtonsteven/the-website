@@ -112,7 +112,7 @@ module.exports = function (configData) {
 			},
 			{
 				name: "bluesky",
-				link: "https://bsky.app/profile/esaevian.bsky.app",
+				link: "https://bsky.app/profile/esaevian.bsky.social",
 				external: true,
 				desc: "mostly reshares (skeets?) of possums and birds and wolves",
 			},
